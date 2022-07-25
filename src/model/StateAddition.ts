@@ -37,6 +37,9 @@ export class StateAddition extends AbstractState<number>{
     }
     evaluate(): number {
         let result : number = 0;
+        for(let i = 0; i < this._dimension; i++) {
+            result += this._entree[i] * this._solution[i];
+        }
         return result;
     }
 
