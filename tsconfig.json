@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "UMD",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "lib" : ["ESNext", "DOM"],
+        "outDir": "dist"
+    },
+
+    "include": ["src/**/*.ts"],
+}

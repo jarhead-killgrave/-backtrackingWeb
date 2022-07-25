@@ -1,36 +1,38 @@
 "use strict"
 
+import { State } from "./State";
+
 /**
  * Classe representant de façon abstraite un etat du probleme à resoudre
  * 
  * @author Jkgrave
  * @version 1.0.0
  */
-abstract class AbstractState<T> implements State{
+export abstract class AbstractState<T> implements State{
 
     /**
      * Les entrees du model
      */
-    private _entree: T[];
+    protected _entree: T[];
 
     /**
      * La dimension du model
      */
-    private _dimension: number;
+    protected _dimension: number;
 
     /**
      * Boolean indiquant si l'etat est un objectif
      */
-    private _objectif : boolean = false;
+    protected _objectif : boolean = false;
 
     /**
      * L'etat père de l'etat courant
      */
-    private _etatPere: AbstractState<T>;
+    protected _etatPere: AbstractState<T>;
 
-    constructor(entree: T[], dimension: number, etat: AbstractState<T>){
+    constructor(entree: T[], etat: AbstractState<T>){
         this._entree = entree;
-        this._dimension = dimension;
+        this._dimension = entree.length;
         this._etatPere = etat;
     }
 

@@ -7,7 +7,7 @@
  * @author Jkgrave
  * @version 1.0.0
  */
-interface State{
+export interface State{
 
     /**
      * Retourne tous les etats fils de l'etat courant
