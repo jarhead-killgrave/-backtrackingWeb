@@ -1,7 +1,5 @@
 "use strict";
 
-import { AbstractState } from "./AbstractState";
-import { State } from "./State";
 
 /**
  * Classe representant un etat permettant de modeliser un probleme lié à une addition
@@ -10,7 +8,7 @@ import { State } from "./State";
  * @version 1.0
  */
 
-export class AdditionState extends AbstractState<number>{
+class AdditionState extends AbstractState<number>{
     
     /**
      * La solution actuellement trouve

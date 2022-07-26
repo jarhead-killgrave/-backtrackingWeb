@@ -1,6 +1,5 @@
 "use strict";
 
-import { Comparable } from "./Comparable";
 
 /**
  * Classe permettant de gérer une liste d'element comparables
@@ -8,7 +7,7 @@ import { Comparable } from "./Comparable";
  * @author Jkgrave
  * @version 1.0.0
  */
-export class ArrayList<T extends Comparable<T>>{
+class ArrayList<T extends Comparable<T>>{
 
     /**
      * La liste d'element de type T

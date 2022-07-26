@@ -1,7 +1,5 @@
 "use strict"
 
-import { ArrayList } from "../model/ArrayList";
-import { State } from "../model/State";
 
 /**
  * Classe permettant d'implementer une recherche en largeur ou
@@ -11,7 +9,7 @@ import { State } from "../model/State";
  * @version 1.0.0
  */
 
-export class Recherche{
+class Recherche{
 
     /**
      * Booleen indiquant si la recherche doit s'effectuer en largeur ou profondeur

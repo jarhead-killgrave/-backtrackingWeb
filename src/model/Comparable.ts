@@ -6,7 +6,7 @@
  * @author Jkgrave
  * @version 1.0
  */
-export interface Comparable<T>{
+interface Comparable<T>{
 
     /**
      * Retourne un booleen indiquant si l'objet est equale
