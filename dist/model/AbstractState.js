@@ -34,6 +34,11 @@
             }
             return result;
         };
+        AbstractState.prototype.equal = function (state) {
+            var okDimension = state._dimension === this._dimension;
+            var okEntre = this._entree.every(function (value, index) { return value === state._entree[index]; });
+            return true;
+        };
         return AbstractState;
     }());
     exports.AbstractState = AbstractState;

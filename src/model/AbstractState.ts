@@ -8,7 +8,7 @@ import { State } from "./State";
  * @author Jkgrave
  * @version 1.0.0
  */
-export abstract class AbstractState<T> implements State{
+export abstract class AbstractState<T> implements State {
 
     /**
      * Les entrees du model
@@ -79,5 +79,12 @@ export abstract class AbstractState<T> implements State{
 
     abstract generateStates(): State[];
     abstract evaluate(): number;
+    
+    equal(state: AbstractState<T>): boolean{
+        let okDimension : boolean = state._dimension === this._dimension
+        let okEntre : boolean = this._entree.every((value, index) => value === state._entree[index]);
+        return  true;
+
+    }
     
 }

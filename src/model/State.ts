@@ -1,5 +1,7 @@
 "use strict";
 
+import { Comparable } from "./Comparable";
+
 /**
  * Interface dont doivent hériter tous les etats utilisables pour la
  * resolution des problèmes de backtracking
@@ -7,7 +9,7 @@
  * @author Jkgrave
  * @version 1.0.0
  */
-export interface State{
+export interface State extends Comparable<State>{
 
     /**
      * Retourne tous les etats fils de l'etat courant
@@ -26,4 +28,8 @@ export interface State{
      * @return {string}
      */
     printPath(): string;
+
+    estObjectif():boolean;
+
+    setObjectif(objectif:boolean): void ;
 }

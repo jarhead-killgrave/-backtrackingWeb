@@ -4,14 +4,16 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../model/StateAddition"], factory);
+        define(["require", "exports", "../algorithmes/Recherche", "../model/AdditionState"], factory);
     }
 })(function (require, exports) {
     "use strict";
     exports.__esModule = true;
-    var StateAddition_1 = require("../model/StateAddition");
-    var state = new StateAddition_1.StateAddition([1, 2, 3, 4], null);
+    var Recherche_1 = require("../algorithmes/Recherche");
+    var AdditionState_1 = require("../model/AdditionState");
+    var state = new AdditionState_1.AdditionState([1, 2, 3, 4], null);
+    var rech = new Recherche_1.Recherche();
     console.log(state);
-    console.log((state.generateStates()[0]).generateStates());
+    console.log(rech.resolution(state, 6));
 });
 //# sourceMappingURL=Main.js.map
