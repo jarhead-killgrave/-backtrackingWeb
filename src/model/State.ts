@@ -1,5 +1,6 @@
 "use strict";
 
+import { Comparable } from "./Comparable";
 
 /**
  * Interface dont doivent hériter tous les etats utilisables pour la
@@ -8,8 +9,7 @@
  * @author Jkgrave
  * @version 1.0.0
  */
-
-    interface State extends Comparable<State>{
+export interface State extends Comparable<State>{
 
     /**
      * Retourne tous les etats fils de l'etat courant

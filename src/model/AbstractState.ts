@@ -1,12 +1,14 @@
 "use strict"
 
+import { State } from "./State";
+
 /**
  * Classe representant de façon abstraite un etat du probleme à resoudre
  * 
  * @author Jkgrave
  * @version 1.0.0
  */
-abstract class AbstractState<T> implements State {
+export abstract class AbstractState<T> implements State {
 
     /**
      * Les entrees du model
