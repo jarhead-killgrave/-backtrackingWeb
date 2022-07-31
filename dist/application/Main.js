@@ -1,19 +1,19 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../algorithmes/Recherche", "../model/AdditionState"], factory);
-    }
-})(function (require, exports) {
-    "use strict";
-    exports.__esModule = true;
-    var Recherche_1 = require("../algorithmes/Recherche");
-    var AdditionState_1 = require("../model/AdditionState");
-    var state = new AdditionState_1.AdditionState([1, 2, 3, 4], null);
-    var rech = new Recherche_1.Recherche();
-    console.log(state);
-    console.log(rech.resolution(state, 6));
-});
+"use strict";
+var state = new AdditionState([1, 2, 3, 4], null);
+var tab = [];
+var max = 999;
+var min = 100;
+for (var i = 0; i < 10; i++) {
+    tab.push(Math.floor(Math.random() * (99)) + 1);
+}
+var state2 = new AllOperatorState([1, 2, 25, 50, 75, 100], null);
+console.log(state2);
+var rech = new Recherche();
+var stateExpression = new StateExpression([1, 2, 25, 50, 75, 100], null, new Expression("+", 0, 0));
+var objectif = Math.floor(Math.random() * (max - min)) + min;
+console.log(objectif);
+var fetchPromise2 = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+console.log(stateExpression);
+var result;
+fetchPromise2.then(function () { result = rech.resolution(stateExpression, objectif); }).then(function () { console.log("ok"); console.log(result); console.log(result.printPath()); });
 //# sourceMappingURL=Main.js.map

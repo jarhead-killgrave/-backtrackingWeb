@@ -1,14 +1,12 @@
 "use strict"
 
-import { State } from "./State";
-
 /**
  * Classe representant de façon abstraite un etat du probleme à resoudre
  * 
  * @author Jkgrave
  * @version 1.0.0
  */
-export abstract class AbstractState<T> implements State {
+abstract class AbstractState<T> implements State {
 
     /**
      * Les entrees du model
@@ -30,10 +28,10 @@ export abstract class AbstractState<T> implements State {
      */
     protected _etatPere: AbstractState<T>;
 
-    constructor(entree: T[], etat: AbstractState<T>){
+    constructor(entree: T[], etat?: AbstractState<T>){
         this._entree = entree;
         this._dimension = entree.length;
-        this._etatPere = etat;
+        this._etatPere = etat ?? null;
     }
 
     /**
@@ -73,6 +71,7 @@ export abstract class AbstractState<T> implements State {
         while (etatPere != null){
             result += "\n";
             result += this;
+            etatPere = etatPere.getEtatPere()
         }
         return result;
     }
@@ -83,7 +82,7 @@ export abstract class AbstractState<T> implements State {
     equal(state: AbstractState<T>): boolean{
         let okDimension : boolean = state._dimension === this._dimension
         let okEntre : boolean = this._entree.every((value, index) => value === state._entree[index]);
-        return  true;
+        return  okDimension && okEntre;
 
     }
     

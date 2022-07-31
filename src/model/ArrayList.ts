@@ -1,6 +1,5 @@
 "use strict";
 
-import { Comparable } from "./Comparable";
 
 /**
  * Classe permettant de gérer une liste d'element comparables
@@ -8,7 +7,7 @@ import { Comparable } from "./Comparable";
  * @author Jkgrave
  * @version 1.0.0
  */
-export class ArrayList<T extends Comparable<T>>{
+class ArrayList<T extends Comparable<T>>{
 
     /**
      * La liste d'element de type T
@@ -46,6 +45,9 @@ export class ArrayList<T extends Comparable<T>>{
     }
 
     addAll(items : T[]) : void {
+        if(Date.now() % 2 === 0) {
+        this._liste.unshift.apply(this._liste, items);
+        }
         this._liste.push.apply(this._liste, items);
     }
 
@@ -55,9 +57,16 @@ export class ArrayList<T extends Comparable<T>>{
         this._liste = this._liste.filter(predicat);
     }
 
+    unshift = (item: T) : number => this._liste.unshift(item);
+
     shift = () : T => this._liste.shift();
 
     length = () : number => this._liste.length;
+
+    clone() : ArrayList<T> {
+        let result = new ArrayList<T>();
+        return result;
+    }
 
 }
 

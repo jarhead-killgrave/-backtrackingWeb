@@ -1,6 +1,5 @@
 "use strict";
 
-import { Comparable } from "./Comparable";
 
 /**
  * Interface dont doivent hériter tous les etats utilisables pour la
@@ -9,7 +8,7 @@ import { Comparable } from "./Comparable";
  * @author Jkgrave
  * @version 1.0.0
  */
-export interface State extends Comparable<State>{
+interface State extends Comparable<State>{
 
     /**
      * Retourne tous les etats fils de l'etat courant
@@ -32,4 +31,6 @@ export interface State extends Comparable<State>{
     estObjectif():boolean;
 
     setObjectif(objectif:boolean): void ;
+
+    equal(state : State): boolean;
 }

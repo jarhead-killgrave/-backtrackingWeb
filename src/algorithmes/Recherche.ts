@@ -1,65 +1,71 @@
-"use strict"
-
-import { ArrayList } from "../model/ArrayList";
-import { State } from "../model/State";
+"use strict";
 
 /**
  * Classe permettant d'implementer une recherche en largeur ou
- * en profondeur 
- * 
+ * en profondeur
+ *
  * @author Jkgrave
  * @version 1.0.0
  */
 
-export class Recherche{
+class Recherche {
 
-    /**
-     * Booleen indiquant si la recherche doit s'effectuer en largeur ou profondeur
-     */
-    private _dfs : boolean;
+  /**
+   * Le plus grand etat atteint
+   */
+  private _etatMax: State;
 
-    /** 
-     * Le plus grand etat atteint
-    */
-   private _etatMax : State;
 
-    /**
-     *  Construit une nouvelle instance de Recherce
-     * @param dfs 
-     */
-    constructor(dfs?: boolean){
-        this._dfs = dfs ?? false;
+
+
+  /**
+   *  Construit une nouvelle instance de Recherce
+   * @param dfs
+   */
+  constructor() {
+
+  }
+
+  resolution(etatInitiale: State, objectifValeur: number): State {
+    this._etatMax = this.parcours(etatInitiale, objectifValeur)
+    return this._etatMax
     }
-
-    resolution(etatInitiale : State, objectifValeur : number) : State {
-        let noeudLibre : ArrayList<State> = new ArrayList<State>();
-        let noeudVisite : ArrayList<State> = new ArrayList<State>();
-        this._etatMax = etatInitiale;
-        let noeudGenere : ArrayList<State> = new ArrayList<State>();
-        noeudLibre.push(etatInitiale);
-        let succes : boolean = etatInitiale.evaluate() == objectifValeur;
-
-        while (noeudLibre.length() != 0 && !succes){
-            let premierNoeud : State = noeudLibre.shift();
-            noeudVisite.push(premierNoeud);
-            noeudGenere = new ArrayList<State>(premierNoeud.generateStates());
-
-            for(let i = 0; i < noeudGenere.length() && !succes; i++){
-                let state : State = noeudGenere._liste[i];
-                if(state.evaluate() == objectifValeur){
-                    succes = true;
-                    state.setObjectif(true);
-                    this._etatMax = state;
-                }
-            }
-
-            noeudLibre.addAll(noeudGenere._liste);
+    
+  
+  parcours(etatInitiale: State, objectifValeur: number): State{
+    let noeudLibre: State [] = [];
+    let result = etatInitiale;
+    let hamming: number = Math.abs(result.evaluate() - objectifValeur);
+    let noeudGenere: State [] = [];
+    noeudLibre.push(etatInitiale);
+    let succes: boolean = etatInitiale.evaluate() == objectifValeur;
+    let temps = Date.now()
+    while ((Date.now() - temps) < 41000 && noeudLibre.length != 0 && !succes) {
+      let premierNoeud: State = noeudLibre.shift();
+      noeudGenere = (premierNoeud.generateStates());
+      
+      for (let state of noeudGenere) {
+        let newHamming = Math.abs(state.evaluate() - objectifValeur)
+        if (newHamming == 0) {
+          succes = true;
+          state.setObjectif(true);
+          result = state;
+          break
+        } else if (newHamming < hamming) {
+          result = state;
+          hamming = Math.abs(state.evaluate() - objectifValeur);
+          noeudLibre.unshift(state);
         }
+        else {
+            noeudLibre.push(state);
 
-        return this._etatMax;
+        }
+      }
 
     }
 
+    return result;
+  }
 
-
+  
 }
